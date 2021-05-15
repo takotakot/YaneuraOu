@@ -33,8 +33,12 @@ jobs:
       # https://developer.android.com/ndk/downloads?hl=ja#stable-downloads
       - name: Setup Android NDK r21b
         uses: nttld/setup-ndk@v1
+        id: setup-ndk
         with:
           ndk-version: r21b
+      - run: ls ${{ steps.setup-ndk.outputs.ndk-path }}
+      - run: ndk-build --version
+      - run: ${{ steps.setup-ndk.outputs.ndk-path }}/ndk-build --version
 
       - name: Checkout own repository
         uses: actions/checkout@v2
